@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 function Homepage() {
   return (
-    <div className="h-screen mb-2 container mx-auto px-4 sm:px-10 md:px-8 lg:px-16">
+    <div className="h-screen container mx-auto px-4 sm:px-10 md:px-8 lg:px-16">
       <Navbar />
       <motion.div
         initial={{ y: 300, opacity: 0 }}
@@ -15,11 +15,11 @@ function Homepage() {
         exit={{ y: -300, opacity: 0 }}
         transition={{ duration: 1, ease: "easeInOut" }}
       >
-        <div className="flex flex-col items-center mt-20">
-          <h1 className="font-Millik text-6xl text-primary text-center">
+        <div className="flex flex-col items-center mt-10 px-5 lg:mt-20">
+          <h1 className="font-Millik text-4xl lg:text-6xl text-primary text-center">
             Create your own{" "}
           </h1>
-          <h1 className="font-Millik text-6xl text-secondary text-center">
+          <h1 className="font-Millik text-4xl lg:text-6xl text-secondary text-center">
             Inspirational Quotes
           </h1>
           <p className="my-3 text-center">
