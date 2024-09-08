@@ -77,7 +77,7 @@ function page() {
       exit={{ y: -300, opacity: 0 }}
       transition={{ duration: 1, ease: "easeInOut" }}
     >
-      <div className="grid grid-cols-12 gap-10 my-10 ring-2 ring-primary bg-white p-10 rounded-xl">
+      <div className="grid lg:grid-cols-12 gap-10 my-10 ring-2 ring-primary bg-white p-4 lg:p-10 rounded-xl">
         <div className="col-span-7">
           <h2 className="text-xl font-Millik text-primary mb-3">
             Select Text Color
