@@ -2,22 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: "Rubik";
+  src: url("../../public/fonts/Rubik-Regular.ttf") format("truetype");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: "RubikLight";
+  src: url("../../public/fonts/Rubik-Light.ttf") format("truetype");
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@font-face {
+  font-family: "RubikBold";
+  src: url("../../public/fonts/Rubik-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Millik";
+  src: url("../../public/fonts/Millik.ttf") format("truetype");
+}
+
+* {
+  font-family: "RubikLight";
 }
 
 @layer utilities {
@@ -30,4 +36,15 @@ body {
   :root {
     --radius: 0.5rem;
   }
+}
+
+.homescreen{
+  background-image: url('../../public/img/bg.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+.quotecard{
+  background-size: cover;
+  background-repeat: no-repeat;
 }
