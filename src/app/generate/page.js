@@ -21,6 +21,7 @@ function page() {
   const [name, setName] = useState("");
   const [backgroundImage, setBackgroundImage] = useState("/img/sunset.jpg");
   const cardRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
@@ -53,15 +54,19 @@ function page() {
       return;
     }
 
+    setIsLoading(true)
+
     toPng(cardRef.current, { cacheBust: true })
       .then((dataUrl) => {
         const link = document.createElement("a");
         link.download = "my-image-name.png";
         link.href = dataUrl;
         link.click();
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setIsLoading(false);
       });
   };
 
@@ -77,8 +82,8 @@ function page() {
       exit={{ y: -300, opacity: 0 }}
       transition={{ duration: 1, ease: "easeInOut" }}
     >
-      <div className="grid lg:grid-cols-12 gap-10 my-10 ring-2 ring-primary bg-white p-4 lg:p-10 rounded-xl">
-        <div className="col-span-7">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10 ring-2 ring-gray-100 bg-white p-4 lg:p-10 rounded-xl">
+        <div className="">
           <h2 className="text-xl font-Millik text-primary mb-3">
             Select Text Color
           </h2>
@@ -115,7 +120,7 @@ function page() {
                 rows="4"
                 placeholder="Enter your inspirational quote"
                 value={quote}
-                maxlength={340}
+                maxLength={340}
                 onChange={(e) => setQuote(e.target.value)}
               ></Textarea>
             </div>
@@ -155,20 +160,20 @@ function page() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center col-span-5">
+        <div className="flex flex-col justify-center">
           <div
             ref={cardRef}
-            className="bg-[url('/img/sunset.jpg')] quotecard w-full h-[25em] p-8 rounded-lg text-center"
+            className="bg-[url('/img/sunset.jpg')] quotecard w-full h-[20em] lg:h-[25em] p-4 lg:p-8 rounded-lg text-center"
             style={{ backgroundImage: `url(${backgroundImage})` }}
           >
             <div
               className={`h-full rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 border border-opacity-10 border-gray-100 p-6 flex flex-col justify-center`}
             >
-              <h3 className={`text-xl`} style={{ color: selectedColor }}>
+              <h3 className={`text-sm lg:text-xl`} style={{ color: selectedColor }}>
                 {quote || "Your Quote will appear here..."}
               </h3>
               <p
-                className={`text-lg font-Millik mt-4`}
+                className={`text-base lg:text-lg font-Millik mt-4`}
                 style={{ color: selectedColor }}
               >
                 {name ? `- ${name}` : "- Your Name"}
