@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toPng } from "html-to-image";
+import { LuLoader2 } from "react-icons/lu";
 
 function page() {
   const colors = [
@@ -11,9 +12,6 @@ function page() {
     "#000000",
     "#e3d7ff",
     "#ffd449",
-    "#f9a620",
-    "#613f75",
-    "#b9baa3",
   ];
   const [selectedColor, setSelectedColor] = useState("#ffffff");
   const [customColor, setCustomColor] = useState("");
@@ -21,7 +19,7 @@ function page() {
   const [name, setName] = useState("");
   const [backgroundImage, setBackgroundImage] = useState("/img/sunset.jpg");
   const cardRef = useRef(null);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
@@ -53,13 +51,11 @@ function page() {
     if (cardRef.current === null) {
       return;
     }
-
-    setIsLoading(true)
-
+    setIsLoading(true);
     toPng(cardRef.current, { cacheBust: true })
       .then((dataUrl) => {
         const link = document.createElement("a");
-        link.download = "my-image-name.png";
+        link.download = "my-quote.png";
         link.href = dataUrl;
         link.click();
         setIsLoading(false);
@@ -72,7 +68,7 @@ function page() {
 
   const resetImage = () => {
     setBackgroundImage("/img/sunset.jpg");
-    setSelectedColor("#ffffff")
+    setSelectedColor("#ffffff");
   };
 
   return (
@@ -146,15 +142,20 @@ function page() {
                 className="w-full p-2 "
                 onChange={handleImageUpload}
               />
-              <span className="text-sm my-2 cursor-pointer text-primary" onClick={resetImage}>
+              <span
+                className="text-sm my-2 cursor-pointer text-primary"
+                onClick={resetImage}
+              >
                 Reset to default
               </span>
             </div>
 
             <button
-              className="bg-primary text-white px-4 py-2 rounded transition"
+              className={`${isLoading ? 'bg-gray-400' : 'bg-primary'} text-white px-4 py-2 rounded transition flex items-center gap-2`}
               onClick={downloadImage}
+              disabled={isLoading}
             >
+              {isLoading && <LuLoader2 className="text-white animate-spin" />}
               Download as Image
             </button>
           </div>
@@ -169,7 +170,10 @@ function page() {
             <div
               className={`h-full rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 border border-opacity-10 border-gray-100 p-6 flex flex-col justify-center`}
             >
-              <h3 className={`text-sm lg:text-xl`} style={{ color: selectedColor }}>
+              <h3
+                className={`text-sm lg:text-xl`}
+                style={{ color: selectedColor }}
+              >
                 {quote || "Your Quote will appear here..."}
               </h3>
               <p

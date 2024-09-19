@@ -1,10 +1,9 @@
-"use client"
+"use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 function Navbar() {
-  
   return (
     <div className="flex justify-between py-4">
       <Link href="/">
@@ -14,12 +13,14 @@ function Navbar() {
         </div>
       </Link>
       <div className="hidden gap-3 lg:flex">
-        <Button className="bg-primary border-0 hover:bg-primary rounded-lg py-5 shadow-none">
-          Generate Quote
-        </Button>
-        <Button className="bg-secondary border-0 hover:bg-secondary rounded-lg py-5 shadow-none">
+        <Link href="/generate">
+          <Button className="bg-primary border-0 hover:bg-primary rounded-lg py-5 shadow-none">
+            Generate Quote
+          </Button>
+        </Link>
+        {/* <Button className="bg-secondary border-0 hover:bg-secondary rounded-lg py-5 shadow-none">
           Explore Quotes
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

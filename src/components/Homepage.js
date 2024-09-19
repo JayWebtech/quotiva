@@ -34,9 +34,9 @@ function Homepage() {
                   Generate Quote
                 </Button>
               </Link>
-              <Button className="bg-secondary border-0 hover:bg-secondary rounded-full py-7 px-10 shadow-none">
+              {/* <Button className="bg-secondary border-0 hover:bg-secondary rounded-full py-7 px-10 shadow-none">
                 Explore Quotes
-              </Button>
+              </Button> */}
             </div>
           </div>
         </motion.div>
